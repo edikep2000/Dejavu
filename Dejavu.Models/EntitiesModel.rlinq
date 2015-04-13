@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="Dejavu.Models" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="EntitiesModel" backend="mssql" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="Dejavu.Models" default="true">
+      <orm:class name="Program" uniqueId="ba3b84bb-ac15-458b-89de-4c3f1748aeb7">
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:field name="_id" property="Id" uniqueId="8f26256a-fbe8-4a1d-96e5-15b3d8e1a0b3" type="System.Int32" />
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="" />
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <SaveConnectionStringInAppConfig>false</SaveConnectionStringInAppConfig>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <ImplementINotifyPropertyChanging>true</ImplementINotifyPropertyChanging>
+      <ImplementINotifyPropertyChanged>true</ImplementINotifyPropertyChanged>
+      <ImplementIDataErrorInfo>true</ImplementIDataErrorInfo>
+      <GenerateDataAnnotationAttributes>true</GenerateDataAnnotationAttributes>
+      <ImplementISerializable>true</ImplementISerializable>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MsSql</Backend>
+        <ProviderName>System.Data.SqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="ba3b84bb-ac15-458b-89de-4c3f1748aeb7" name="Program" namespace="Dejavu.Models" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="8f26256a-fbe8-4a1d-96e5-15b3d8e1a0b3" name="Id" type="System.Int32" label="Id : System.Int32" identity="true" fieldName="_id" />
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="7f34049f-32fc-44b5-b8e3-88587fdcbbad">
+      <domainContainer name="EntitiesModel" namespace="Dejavu.Models" showPropertiesCompartment="true">
+        <entitySetProperty name="Programs" namespace="Dejavu.Models" type="Program" label="Programs : IQueryable&lt;Dejavu.Models.Program&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>
