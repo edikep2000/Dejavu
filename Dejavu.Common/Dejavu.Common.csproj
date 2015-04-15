@@ -40,6 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ProgramEditorModel.cs" />
+    <Compile Include="ViewModels\ProgramListModel.cs" />
+    <Compile Include="ViewModels\ProgramReviewsEditorModel.cs" />
+    <Compile Include="ViewModels\ProgramReviewsInputModel.cs" />
+    <Compile Include="ViewModels\ProgramReviewsListModel.cs" />
+    <Compile Include="ViewModels\ProgramViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

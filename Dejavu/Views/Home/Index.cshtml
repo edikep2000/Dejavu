@@ -2,31 +2,3 @@
     ViewBag.Title = "Welcome to DejaVu";
 }
 
-<div class="countdownHolder">
-    
-</div>
-
-@section scripts
-{
-    <script type="text/javascript">
-        $(function () {
-
-            var note = $('#note'),
-                ts = new Date(2015, 6, 14),
-                newYear = false;
-            $('.countdownHolder').countdown({
-                timestamp: ts,
-                callback: function (days, hours, minutes, seconds) {
-                    var message = "";
-                    message += days + " day" + (days == 1 ? '' : 's') + ", ";
-                    message += hours + " hour" + (hours == 1 ? '' : 's') + ", ";
-                    message += minutes + " minute" + (minutes == 1 ? '' : 's') + " and ";
-                    message += seconds + " second" + (seconds == 1 ? '' : 's') + " <br />";
-                    message += "left to Launch date. You could leave us your email, we will let you know when we are up and running";
-                    note.html(message);
-                }
-            });
-
-        });
-    </script>
-}
