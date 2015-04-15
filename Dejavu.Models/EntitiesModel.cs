@@ -24,11 +24,11 @@ namespace Dejavu.Models
 {
 	public partial class EntitiesModel : OpenAccessContext, IEntitiesModelUnitOfWork
 	{
-		private static string connectionStringName = @"";
+		private static string connectionStringName = @"DejavuConnection";
 			
 		private static BackendConfiguration backend = GetBackendConfiguration();
 				
-		private static MetadataSource metadataSource = XmlMetadataSource.FromAssemblyResource("EntitiesModel.rlinq");
+		private static MetadataSource metadataSource = new EntitiesModelFluentMetadataSource();
 		
 		public EntitiesModel()
 			:base(connectionStringName, backend, metadataSource)
@@ -58,11 +58,36 @@ namespace Dejavu.Models
 			}
 		}
 		
+		public IQueryable<ProgramReviews> ProgramReviews 
+		{
+			get
+			{
+				return this.GetAll<ProgramReviews>();
+			}
+		}
+		
+		public IQueryable<ProgramRatings> ProgramRatings 
+		{
+			get
+			{
+				return this.GetAll<ProgramRatings>();
+			}
+		}
+		
+		public IQueryable<ProgramTestimonies> ProgramTestimonies 
+		{
+			get
+			{
+				return this.GetAll<ProgramTestimonies>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
 			backend.Backend = "MsSql";
 			backend.ProviderName = "System.Data.SqlClient";
+			backend.Logging.MetricStoreSnapshotInterval = 0;
 		
 			CustomizeBackendConfiguration(ref backend);
 		
@@ -80,6 +105,18 @@ namespace Dejavu.Models
 	public interface IEntitiesModelUnitOfWork : IUnitOfWork
 	{
 		IQueryable<Program> Programs
+		{
+			get;
+		}
+		IQueryable<ProgramReviews> ProgramReviews
+		{
+			get;
+		}
+		IQueryable<ProgramRatings> ProgramRatings
+		{
+			get;
+		}
+		IQueryable<ProgramTestimonies> ProgramTestimonies
 		{
 			get;
 		}

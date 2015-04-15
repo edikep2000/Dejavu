@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -114,6 +120,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.OpenAccess, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
     <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -178,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -192,6 +200,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Common.css" />
+    <Content Include="css\themes\gui3\AwesomeMvc.css" />
+    <Content Include="css\themes\gui3\awe_icons.png" />
+    <Content Include="css\themes\gui3\editdel.png" />
+    <Content Include="css\themes\gui3\loading.gif" />
+    <Content Include="css\themes\gui3\pm.png" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\facebook.css" />
     <Content Include="css\jquery.countdown.css" />
@@ -210,6 +224,7 @@
     <Content Include="img\photo.png" />
     <Content Include="img\photo_002.jpg" />
     <Content Include="img\uFp_tsTJboUY7kue5XAsGAs28.png" />
+    <Content Include="js\AwesomeMvc.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\jquery.countdown.js" />
     <Content Include="js\jquery.js" />
@@ -227,6 +242,7 @@
     <Content Include="js\knockout-2.2.0.debug.js" />
     <Content Include="js\knockout-2.2.0.js" />
     <Content Include="js\modernizr-2.6.2.js" />
+    <Content Include="js\Utils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -258,6 +274,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dejavu.DataAccess\Dejavu.DataAccess.csproj">
+      <Project>{A394D3C6-864C-406D-8A50-12BDF249D827}</Project>
+      <Name>Dejavu.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dejavu.Models\Dejavu.Models.csproj">
+      <Project>{C50145E6-A244-4F1F-B41F-90D1925B4A00}</Project>
+      <Name>Dejavu.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

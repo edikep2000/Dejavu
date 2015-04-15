@@ -24,11 +24,11 @@ using Dejavu.Models;
 namespace Dejavu.Models	
 {
 	[System.Serializable()]
-	public partial class Program : IDataErrorInfo, INotifyPropertyChanging, INotifyPropertyChanged, System.Runtime.Serialization.ISerializable
+	public partial class ProgramRatings : IDataErrorInfo, INotifyPropertyChanging, INotifyPropertyChanged, System.Runtime.Serialization.ISerializable
 	{
-		private int _id;
+		private long _id;
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual int Id
+		public virtual long Id
 		{
 			get
 			{
@@ -45,125 +45,59 @@ namespace Dejavu.Models
 			}
 		}
 		
-		private string _name;
+		private int _programId;
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual string Name
+		public virtual int ProgramId
 		{
 			get
 			{
-				return this._name;
+				return this._programId;
 			}
 			set
 			{
-				if(this._name != value)
+				if(this._programId != value)
 				{
-					this.OnPropertyChanging("Name");
-					this._name = value;
-					this.OnPropertyChanged("Name");
+					this.OnPropertyChanging("ProgramId");
+					this._programId = value;
+					this.OnPropertyChanged("ProgramId");
 				}
 			}
 		}
 		
-		private DateTime _dateHeld;
+		private int _rating;
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual DateTime DateHeld
+		public virtual int Rating
 		{
 			get
 			{
-				return this._dateHeld;
+				return this._rating;
 			}
 			set
 			{
-				if(this._dateHeld != value)
+				if(this._rating != value)
 				{
-					this.OnPropertyChanging("DateHeld");
-					this._dateHeld = value;
-					this.OnPropertyChanged("DateHeld");
+					this.OnPropertyChanging("Rating");
+					this._rating = value;
+					this.OnPropertyChanged("Rating");
 				}
 			}
 		}
 		
-		private string _bannerUrl;
-		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual string BannerUrl
+		private Program _program;
+		public virtual Program Program
 		{
 			get
 			{
-				return this._bannerUrl;
+				return this._program;
 			}
 			set
 			{
-				if(this._bannerUrl != value)
+				if(this._program != value)
 				{
-					this.OnPropertyChanging("BannerUrl");
-					this._bannerUrl = value;
-					this.OnPropertyChanged("BannerUrl");
+					this.OnPropertyChanging("Program");
+					this._program = value;
+					this.OnPropertyChanged("Program");
 				}
-			}
-		}
-		
-		private string _videoUrl;
-		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual string VideoUrl
-		{
-			get
-			{
-				return this._videoUrl;
-			}
-			set
-			{
-				if(this._videoUrl != value)
-				{
-					this.OnPropertyChanging("VideoUrl");
-					this._videoUrl = value;
-					this.OnPropertyChanged("VideoUrl");
-				}
-			}
-		}
-		
-		private DateTime _dateCreated;
-		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual DateTime DateCreated
-		{
-			get
-			{
-				return this._dateCreated;
-			}
-			set
-			{
-				if(this._dateCreated != value)
-				{
-					this.OnPropertyChanging("DateCreated");
-					this._dateCreated = value;
-					this.OnPropertyChanged("DateCreated");
-				}
-			}
-		}
-		
-		private IList<ProgramRatings> _programRatings = new List<ProgramRatings>();
-		public virtual IList<ProgramRatings> ProgramRatings
-		{
-			get
-			{
-				return this._programRatings;
-			}
-		}
-		
-		private IList<ProgramReviews> _programReviews = new List<ProgramReviews>();
-		public virtual IList<ProgramReviews> ProgramReviews
-		{
-			get
-			{
-				return this._programReviews;
-			}
-		}
-		
-		private IList<ProgramTestimonies> _programTestimonies = new List<ProgramTestimonies>();
-		public virtual IList<ProgramTestimonies> ProgramTestimonies
-		{
-			get
-			{
-				return this._programTestimonies;
 			}
 		}
 		
@@ -228,29 +162,23 @@ namespace Dejavu.Models
 		
 		#region ISerializable Implementation
 		
-		public Program()
+		public ProgramRatings()
 		{
 		}
 		
-		protected Program(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+		protected ProgramRatings(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 		{
-			this.Id = info.GetInt32("Id");
-			this.Name = info.GetString("Name");
-			this.DateHeld = (DateTime)info.GetValue("DateHeld", typeof(DateTime));
-			this.BannerUrl = info.GetString("BannerUrl");
-			this.VideoUrl = info.GetString("VideoUrl");
-			this.DateCreated = (DateTime)info.GetValue("DateCreated", typeof(DateTime));
+			this.Id = info.GetInt64("Id");
+			this.ProgramId = info.GetInt32("ProgramId");
+			this.Rating = info.GetInt32("Rating");
 			CustomizeDeserializationProcess(info, context);
 		}
 		
 		public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 		{
-			info.AddValue("Id", this.Id, typeof(int));
-			info.AddValue("Name", this.Name, typeof(string));
-			info.AddValue("DateHeld", this.DateHeld, typeof(DateTime));
-			info.AddValue("BannerUrl", this.BannerUrl, typeof(string));
-			info.AddValue("VideoUrl", this.VideoUrl, typeof(string));
-			info.AddValue("DateCreated", this.DateCreated, typeof(DateTime));
+			info.AddValue("Id", this.Id, typeof(long));
+			info.AddValue("ProgramId", this.ProgramId, typeof(int));
+			info.AddValue("Rating", this.Rating, typeof(int));
 			CustomizeSerializationProcess(info, context);
 		}
 		

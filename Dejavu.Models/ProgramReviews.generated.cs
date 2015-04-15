@@ -24,11 +24,12 @@ using Dejavu.Models;
 namespace Dejavu.Models	
 {
 	[System.Serializable()]
-	public partial class Program : IDataErrorInfo, INotifyPropertyChanging, INotifyPropertyChanged, System.Runtime.Serialization.ISerializable
+	public partial class ProgramReviews : IDataErrorInfo, INotifyPropertyChanging, INotifyPropertyChanged, System.Runtime.Serialization.ISerializable
 	{
-		private int _id;
+		private long _id;
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual int Id
+		[System.ComponentModel.DataAnnotations.Key()]
+		public virtual long Id
 		{
 			get
 			{
@@ -45,125 +46,100 @@ namespace Dejavu.Models
 			}
 		}
 		
-		private string _name;
+		private string _postedBy;
+		[System.ComponentModel.DataAnnotations.StringLength(255)]
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual string Name
+		public virtual string PostedBy
 		{
 			get
 			{
-				return this._name;
+				return this._postedBy;
 			}
 			set
 			{
-				if(this._name != value)
+				if(this._postedBy != value)
 				{
-					this.OnPropertyChanging("Name");
-					this._name = value;
-					this.OnPropertyChanged("Name");
+					this.OnPropertyChanging("PostedBy");
+					this._postedBy = value;
+					this.OnPropertyChanged("PostedBy");
 				}
 			}
 		}
 		
-		private DateTime _dateHeld;
+		private string _chapter;
+		[System.ComponentModel.DataAnnotations.StringLength(255)]
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual DateTime DateHeld
+		public virtual string Chapter
 		{
 			get
 			{
-				return this._dateHeld;
+				return this._chapter;
 			}
 			set
 			{
-				if(this._dateHeld != value)
+				if(this._chapter != value)
 				{
-					this.OnPropertyChanging("DateHeld");
-					this._dateHeld = value;
-					this.OnPropertyChanged("DateHeld");
+					this.OnPropertyChanging("Chapter");
+					this._chapter = value;
+					this.OnPropertyChanged("Chapter");
 				}
 			}
 		}
 		
-		private string _bannerUrl;
+		private string _review;
+		[System.ComponentModel.DataAnnotations.StringLength(255)]
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual string BannerUrl
+		public virtual string Review
 		{
 			get
 			{
-				return this._bannerUrl;
+				return this._review;
 			}
 			set
 			{
-				if(this._bannerUrl != value)
+				if(this._review != value)
 				{
-					this.OnPropertyChanging("BannerUrl");
-					this._bannerUrl = value;
-					this.OnPropertyChanged("BannerUrl");
+					this.OnPropertyChanging("Review");
+					this._review = value;
+					this.OnPropertyChanged("Review");
 				}
 			}
 		}
 		
-		private string _videoUrl;
+		private int _programId;
 		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual string VideoUrl
+		public virtual int ProgramId
 		{
 			get
 			{
-				return this._videoUrl;
+				return this._programId;
 			}
 			set
 			{
-				if(this._videoUrl != value)
+				if(this._programId != value)
 				{
-					this.OnPropertyChanging("VideoUrl");
-					this._videoUrl = value;
-					this.OnPropertyChanged("VideoUrl");
+					this.OnPropertyChanging("ProgramId");
+					this._programId = value;
+					this.OnPropertyChanged("ProgramId");
 				}
 			}
 		}
 		
-		private DateTime _dateCreated;
-		[System.ComponentModel.DataAnnotations.Required()]
-		public virtual DateTime DateCreated
+		private Program _program;
+		public virtual Program Program
 		{
 			get
 			{
-				return this._dateCreated;
+				return this._program;
 			}
 			set
 			{
-				if(this._dateCreated != value)
+				if(this._program != value)
 				{
-					this.OnPropertyChanging("DateCreated");
-					this._dateCreated = value;
-					this.OnPropertyChanged("DateCreated");
+					this.OnPropertyChanging("Program");
+					this._program = value;
+					this.OnPropertyChanged("Program");
 				}
-			}
-		}
-		
-		private IList<ProgramRatings> _programRatings = new List<ProgramRatings>();
-		public virtual IList<ProgramRatings> ProgramRatings
-		{
-			get
-			{
-				return this._programRatings;
-			}
-		}
-		
-		private IList<ProgramReviews> _programReviews = new List<ProgramReviews>();
-		public virtual IList<ProgramReviews> ProgramReviews
-		{
-			get
-			{
-				return this._programReviews;
-			}
-		}
-		
-		private IList<ProgramTestimonies> _programTestimonies = new List<ProgramTestimonies>();
-		public virtual IList<ProgramTestimonies> ProgramTestimonies
-		{
-			get
-			{
-				return this._programTestimonies;
 			}
 		}
 		
@@ -228,29 +204,27 @@ namespace Dejavu.Models
 		
 		#region ISerializable Implementation
 		
-		public Program()
+		public ProgramReviews()
 		{
 		}
 		
-		protected Program(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
+		protected ProgramReviews(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 		{
-			this.Id = info.GetInt32("Id");
-			this.Name = info.GetString("Name");
-			this.DateHeld = (DateTime)info.GetValue("DateHeld", typeof(DateTime));
-			this.BannerUrl = info.GetString("BannerUrl");
-			this.VideoUrl = info.GetString("VideoUrl");
-			this.DateCreated = (DateTime)info.GetValue("DateCreated", typeof(DateTime));
+			this.Id = info.GetInt64("Id");
+			this.PostedBy = info.GetString("PostedBy");
+			this.Chapter = info.GetString("Chapter");
+			this.Review = info.GetString("Review");
+			this.ProgramId = info.GetInt32("ProgramId");
 			CustomizeDeserializationProcess(info, context);
 		}
 		
 		public virtual void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
 		{
-			info.AddValue("Id", this.Id, typeof(int));
-			info.AddValue("Name", this.Name, typeof(string));
-			info.AddValue("DateHeld", this.DateHeld, typeof(DateTime));
-			info.AddValue("BannerUrl", this.BannerUrl, typeof(string));
-			info.AddValue("VideoUrl", this.VideoUrl, typeof(string));
-			info.AddValue("DateCreated", this.DateCreated, typeof(DateTime));
+			info.AddValue("Id", this.Id, typeof(long));
+			info.AddValue("PostedBy", this.PostedBy, typeof(string));
+			info.AddValue("Chapter", this.Chapter, typeof(string));
+			info.AddValue("Review", this.Review, typeof(string));
+			info.AddValue("ProgramId", this.ProgramId, typeof(int));
 			CustomizeSerializationProcess(info, context);
 		}
 		

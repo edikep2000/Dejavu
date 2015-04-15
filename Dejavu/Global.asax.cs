@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Dejavu.App_Start;
 
 namespace Dejavu
 {
@@ -24,6 +25,7 @@ namespace Dejavu
             BundleTable.EnableOptimizations = true;
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            AutofacConfig.Configure();
         }
     }
 }
