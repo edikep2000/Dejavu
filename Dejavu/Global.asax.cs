@@ -26,6 +26,7 @@ namespace Dejavu
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             AutofacConfig.Configure();
+            AutoMapperConfig.RegisterProfiles();
         }
     }
 }

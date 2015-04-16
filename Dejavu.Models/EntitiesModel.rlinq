@@ -89,6 +89,11 @@
             <orm:sharedfield name="_programId" target-class="Dejavu.Models.Program" target-field="_id" />
           </orm:reference>
         </orm:field>
+        <orm:index name="idx_ProgramRatings_ProgramId">
+          <orm:columnMapping>
+            <orm:column name="ProgramId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
       </orm:class>
       <orm:class name="ProgramTestimonies" uniqueId="39c0eb02-9160-4c9a-b647-0d81f5cc1c22">
         <orm:table name="ProgramTestimonies" />
@@ -113,6 +118,7 @@
         <orm:field name="_programId" property="ProgramId" uniqueId="ee38498e-6bee-4583-9684-614d6bfac598" type="System.Int32">
           <orm:column name="ProgramId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
+        <orm:field name="_chapter" property="Chapter" uniqueId="8c19ca4e-a824-4629-b67e-8a3ea86414be" type="System.String" />
         <orm:field name="_program" property="Program" behavior="readwrite" uniqueId="ac293b01-7d00-48e4-a4bd-dbf9ca46ae59" type="Dejavu.Models.Program">
           <orm:reference uniqueId="e13b64e4-d3ac-49f4-ac7f-32fae8774bfa" association-name="ProgramTestimoniesHasProgram">
             <orm:sharedfield name="_programId" target-class="Dejavu.Models.Program" target-field="_id" />
@@ -268,6 +274,7 @@
       <Property Id="d2826121-da80-4267-8472-a2e81755a89f" name="Post" label="Post : String" fieldName="_post" />
       <Property Id="d165d687-e901-4256-b522-4fac15582583" name="Likes" type="Int64" label="Likes : Int64" fieldName="_likes" />
       <Property Id="ee38498e-6bee-4583-9684-614d6bfac598" name="ProgramId" type="Int32" label="ProgramId : Int32" fieldName="_programId" />
+      <Property Id="8c19ca4e-a824-4629-b67e-8a3ea86414be" name="Chapter" label="Chapter : String" fieldName="_chapter" />
       <AssociationTargets>
         <Association Id="e13b64e4-d3ac-49f4-ac7f-32fae8774bfa" SourceMultiplicity="ZeroOne" name="ProgramTestimoniesHasProgram">
           <DomainClassMoniker name="/EntitiesModel/Program" />

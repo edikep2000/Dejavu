@@ -2,29 +2,26 @@
 
 namespace Dejavu.Common.ViewModels
 {
-    public class ProgramReviewsEditorModel
+    public class ProgramReviewsViewModel
     {
         [Key]
         public int Id { get; set; }
 
+        [Display(Name = "Posted By")]
         [Required]
-        [Display(Name = "Full Name")]
-        [StringLength(100)]
         public string PostedBy { get; set; }
 
-
         [Display(Name = "Chapter")]
-        [StringLength(100)]
-        public string Chapter { get; set; }
-
-        [Display(Name = "Review")]
-        [StringLength(200)]
         [Required]
+        public string Chapter { get; set; }
+        
+        [Display(Name = "Your Review")]
+        [Required]
+        [StringLength(250)]
         public string Review { get; set; }
 
-        [Display(Name = "Program")]
         [Required]
+        [Display(Name = "Program Id")]
         public int ProgramId { get; set; }
-        
     }
 }

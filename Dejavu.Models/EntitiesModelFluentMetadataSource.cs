@@ -173,6 +173,7 @@ namespace Dejavu.Models
 			configuration.HasProperty(x => x.Post).HasFieldName("_post").ToColumn("Post").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.Likes).HasFieldName("_likes").ToColumn("Likes").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
 			configuration.HasProperty(x => x.ProgramId).HasFieldName("_programId").ToColumn("ProgramId").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
+			configuration.HasProperty(x => x.Chapter).HasFieldName("_chapter");
 		}
 	
 		public void PrepareProgramTestimoniesAssociationConfigurations(MappingConfiguration<ProgramTestimonies> configuration)

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,9 +44,10 @@
     <Compile Include="ViewModels\ProgramEditorModel.cs" />
     <Compile Include="ViewModels\ProgramListModel.cs" />
     <Compile Include="ViewModels\ProgramReviewsEditorModel.cs" />
-    <Compile Include="ViewModels\ProgramReviewsInputModel.cs" />
+    <Compile Include="ViewModels\ProgramReviewsViewModel.cs" />
     <Compile Include="ViewModels\ProgramReviewsListModel.cs" />
     <Compile Include="ViewModels\ProgramViewModel.cs" />
+    <Compile Include="ViewModels\TestimonyViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
