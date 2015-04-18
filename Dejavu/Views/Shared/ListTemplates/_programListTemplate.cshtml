@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Dejavu.Common.ViewModels.ProgramListModel>
+@Layout = null;
+
+@foreach (var i in Model)
+{
+    <li data-k="@i.Id" class="col-md-6 awe-li awe-il">
+        <div class="panel panel-default">
+            <div class="panel-thumbnail">
+                <img src="@i.BannerUrl" class="img-responsive"/>
+            </div>
+            <div class="panel-body">
+                <p class="lead">
+                    @i.Name
+                </p>
+                <p>@i.ReviewCount Reviews @i.TestimonyCount Testimonies</p>
+            </div>
+        </div>
+    </li>
+}

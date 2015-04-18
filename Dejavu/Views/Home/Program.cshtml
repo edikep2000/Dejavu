@@ -1,0 +1,83 @@
+﻿@model Dejavu.Common.ViewModels.ProgramEditorModel
+
+@{
+    ViewBag.Title = "New Program";
+}
+
+<div class="padding">
+    <div class="full col-sm-9">
+        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            New Program
+        </h4>
+    </div>
+    
+            <div class="panel-body">
+                @Html.Partial("_validationSummary")
+                @using (Html.BeginForm("Program", "Home", FormMethod.Post, new{}))
+                {
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Name, new{@class="form-control", placeholder = "Program or Event Tag", accept = ".png,.jpg" })
+                        <br/>
+                        <small class="text-danger">
+                            @Html.ValidationMessageFor(m => m.Name)
+                        </small>
+                    </div>
+            
+            
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default"><i class="glyphicon glyphicon-hd-video"></i></button>
+                        </div>
+                        @Html.TextBoxFor(m => m.VideoUrl, new{@class="form-control", placeholder = "Youtube Video Url"})
+                        <br/>
+                        <small class="text-danger">
+                            @Html.ValidationMessageFor(m => m.VideoUrl)
+                        </small>
+                    </div>
+            
+                    <br/>
+
+                    <div class="form-group">
+                        @Html.Kendo().DatePickerFor(m => m.DateHeld).HtmlAttributes(new{@class="form-control", placeholder = "Date of Event"})
+                        <br/>
+                        <small class="text-danger">
+                            @Html.ValidationMessageFor(m => m.DateHeld)
+                        </small>
+                    </div>
+          
+                    <div class="form-group">
+                        @Html.Label("files", "JPG, PNG Image with Dimensions 720 x 720 pixels")
+                        @Html.Kendo().Upload().Name("Files").HtmlAttributes(new{required="true", @class="form-control"}).Multiple(false).Events(e => e.Upload("onUpload"))
+                        <br/>
+                        <small>
+                            @Html.ValidationMessage("files")</small>
+                    </div>
+            
+            
+                    <button type="submit" class="btn btn-primary">
+                        Save <i class="glyphicon glyphicon-save"></i>
+                    </button>
+            
+                }
+            </div>
+</div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function onUpload(e) {
+            var files = e.files;
+
+            $.each(files, function () {
+                if (this.size > 15 * 1024 * 1024) {
+                    alert(this.name + " is too big!");
+                    e.preventDefault(); // This cancels the upload for the file
+                }
+            });
+        }
+    </script>
+}

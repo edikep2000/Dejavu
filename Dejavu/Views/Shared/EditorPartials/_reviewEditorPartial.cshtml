@@ -1,0 +1,16 @@
+﻿@model Dejavu.Common.ViewModels.ProgramReviewsEditorModel
+
+<div class="well">
+    <div class="form-group" style="padding: 14px;">
+        @Html.TextBoxFor(m => m.PostedBy, new{@class="form-control", placeholder = "Posted By"})
+    </div>
+    <div class="form-group"style="padding: 14px">
+        @Html.TextBoxFor(m => m.Chapter, new{@class="form-control", placeholder = "Chapter"})
+    </div>
+    <div class="form-group" style="padding: 14px;">
+        @Html.TextAreaFor(m => m.Review, new{@class="form-control"})
+    </div>
+    <button type="submit" class="btn btn-primary pull-right">
+        Post
+    </button>
+</div>

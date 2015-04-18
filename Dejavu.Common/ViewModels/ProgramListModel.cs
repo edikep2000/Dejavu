@@ -17,6 +17,7 @@ namespace Dejavu.Common.ViewModels
         public int ReviewCount { get; set; }
 
         public int TestimonyCount { get; set; }
-        
+
+        public string BannerUrl { get; set; }
     }
 }

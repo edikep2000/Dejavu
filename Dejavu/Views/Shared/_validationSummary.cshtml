@@ -1,0 +1,56 @@
+﻿
+@if (ViewData.ModelState.Any(x => x.Value.Errors.Any())) 
+{ 
+<div class="alert alert-warning fade in">
+     <button data-dismiss="alert" class="close" type="button">
+             <i class="glyphicon glyphicon-remove"></i>
+     </button>
+     <h4>
+         <i class="glyphicon glyphicon-stop"></i>
+         Validation Error!
+     </h4>
+     <p>@Html.ValidationSummary(false)</p>
+ </div>
+}
+else if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-success fade in">
+        <button data-dismiss="alert" class="close" type="button">
+                   <i class="glyphicon glyphicon-remove"></i>
+        </button>
+        <h4>
+            <i class="glyphicon glyphicon-info-sign"></i>
+            Success!
+        </h4>
+        <p>@ViewBag.Message</p>
+    </div>
+}
+else if (TempData["Message"] != null)
+{
+    <div class="alert alert-info  fade in">
+        <button data-dismiss="alert" class="close" type="button">
+            <i class="glyphicon glyphicon-remove"></i>
+        </button>
+        <h4>
+               <i class="glyphicon glyphicon-info-sign"></i>
+            Success!
+        </h4>
+         <p>@TempData["Message"]</p>
+    </div>
+   
+}
+else if (TempData["Error"] != null)
+{
+  <div class="alert alert-error  fade in">
+     <button data-dismiss="alert" class="close " type="button">
+         <i class="icon-remove"></i>
+     </button>
+     <h4>
+         <i class="icon-warning-sign"></i>
+         Error!
+     </h4>
+     <p>@TempData["Error"]</p>
+ </div>
+}
+
+

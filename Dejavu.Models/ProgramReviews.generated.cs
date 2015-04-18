@@ -125,6 +125,25 @@ namespace Dejavu.Models
 			}
 		}
 		
+		private DateTime _dateCreated;
+		[System.ComponentModel.DataAnnotations.Required()]
+		public virtual DateTime DateCreated
+		{
+			get
+			{
+				return this._dateCreated;
+			}
+			set
+			{
+				if(this._dateCreated != value)
+				{
+					this.OnPropertyChanging("DateCreated");
+					this._dateCreated = value;
+					this.OnPropertyChanged("DateCreated");
+				}
+			}
+		}
+		
 		private Program _program;
 		public virtual Program Program
 		{
@@ -215,6 +234,7 @@ namespace Dejavu.Models
 			this.Chapter = info.GetString("Chapter");
 			this.Review = info.GetString("Review");
 			this.ProgramId = info.GetInt32("ProgramId");
+			this.DateCreated = (DateTime)info.GetValue("DateCreated", typeof(DateTime));
 			CustomizeDeserializationProcess(info, context);
 		}
 		
@@ -225,6 +245,7 @@ namespace Dejavu.Models
 			info.AddValue("Chapter", this.Chapter, typeof(string));
 			info.AddValue("Review", this.Review, typeof(string));
 			info.AddValue("ProgramId", this.ProgramId, typeof(int));
+			info.AddValue("DateCreated", this.DateCreated, typeof(DateTime));
 			CustomizeSerializationProcess(info, context);
 		}
 		

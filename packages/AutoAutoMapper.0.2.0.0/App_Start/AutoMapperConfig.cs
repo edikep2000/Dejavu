@@ -1,6 +1,7 @@
-﻿using AutoAutoMapper;
+﻿using System.Reflection;
+using AutoAutoMapper;
 
-namespace Dejavu.App_Start
+namespace MyAppNamespace
 {
     public static class AutoMapperConfig
     {

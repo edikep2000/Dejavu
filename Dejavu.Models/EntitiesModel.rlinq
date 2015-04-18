@@ -57,6 +57,7 @@
         <orm:field name="_programId" property="ProgramId" uniqueId="fd32b376-dbb6-4149-a2d4-07e48272fc0a" type="System.Int32">
           <orm:column name="ProgramId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
         </orm:field>
+        <orm:field name="_dateCreated" property="DateCreated" uniqueId="d9bdfff6-db5b-4f6c-8acc-99a85ba36750" type="System.DateTime" />
         <orm:field name="_program" property="Program" behavior="readwrite" uniqueId="f2f2119f-0d00-462a-969e-8bc531be31e1" type="Dejavu.Models.Program">
           <orm:reference uniqueId="c56511cf-1fa2-44b4-9ebb-03c5b1c264ef" association-name="ProgramReviewsHasProgram">
             <orm:sharedfield name="_programId" target-class="Dejavu.Models.Program" target-field="_id" />
@@ -221,6 +222,7 @@
       <Property Id="1023a9a2-f8df-4292-bac7-c5580c756c33" name="Chapter" label="Chapter : String" fieldName="_chapter" />
       <Property Id="76b6521b-e933-4c2e-8549-573187ae9023" name="Review" label="Review : String" fieldName="_review" />
       <Property Id="fd32b376-dbb6-4149-a2d4-07e48272fc0a" name="ProgramId" type="Int32" label="ProgramId : Int32" fieldName="_programId" />
+      <Property Id="d9bdfff6-db5b-4f6c-8acc-99a85ba36750" name="DateCreated" type="DateTime" label="DateCreated : DateTime" fieldName="_dateCreated" />
       <AssociationTargets>
         <Association Id="c56511cf-1fa2-44b4-9ebb-03c5b1c264ef" SourceMultiplicity="ZeroOne" name="ProgramReviewsHasProgram">
           <DomainClassMoniker name="/EntitiesModel/Program" />

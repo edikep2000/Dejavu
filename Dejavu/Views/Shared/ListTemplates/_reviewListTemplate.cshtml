@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Dejavu.Common.ViewModels.ProgramReviewsViewModel>
+@Layout = null;
+
+@foreach (var i in Model)
+{
+    <li data-k="@i.Id" class="col-md-7 awe-li awe-il">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @i.Review
+            </div>
+            <div class="panel-footer">
+                <small class="text-muted">
+                    -by @i.PostedBy | @i.Chapter <span class="date-moment">@i.DateCreated</span>
+                </small>
+            </div>
+        </div>
+    </li>
+}
+
+
+   <script>
+    $(document).ready(function() {
+        $(".date-moment").each(function() {
+            var date = $(this).text();
+            var formatted = moment(date).calendar();
+            $(this).text(formatted);
+        });
+    });
+
+    </script>

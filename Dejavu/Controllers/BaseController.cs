@@ -16,7 +16,7 @@ namespace Dejavu.Controllers
         {
             base.OnActionExecuted(filterContext);
             if(!filterContext.IsChildAction && _context != null && filterContext.Exception == null)
-                _context.SaveChanges(ConcurrencyConflictsProcessingMode.StopOnFirst);
+                _context.SaveChanges();
         } 
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dejavu.Common.ViewModels
 {
     public class ProgramReviewsViewModel
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Display(Name = "Posted By")]
         [Required]
@@ -23,5 +24,7 @@ namespace Dejavu.Common.ViewModels
         [Required]
         [Display(Name = "Program Id")]
         public int ProgramId { get; set; }
+
+        public DateTime DateCreated { get; set; }
     }
 }

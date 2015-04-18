@@ -112,6 +112,7 @@ namespace Dejavu.Models
 			configuration.HasProperty(x => x.Chapter).HasFieldName("_chapter").ToColumn("Chapter").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.Review).HasFieldName("_review").ToColumn("Review").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.ProgramId).HasFieldName("_programId").ToColumn("ProgramId").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
+			configuration.HasProperty(x => x.DateCreated).HasFieldName("_dateCreated");
 		}
 	
 		public void PrepareProgramReviewsAssociationConfigurations(MappingConfiguration<ProgramReviews> configuration)

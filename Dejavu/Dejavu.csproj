@@ -204,6 +204,7 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DefaultProfile.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -213,9 +214,9 @@
     <Compile Include="Controllers\FeaturedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListControllers\ProgramAjaxListController.cs" />
-    <Compile Include="Controllers\ListControllers\RatingsAjaxListController.cs" />
     <Compile Include="Controllers\ListControllers\ReviewsAjaxListController.cs" />
     <Compile Include="Controllers\ListControllers\TestimoniesAjaxListController.cs" />
+    <Compile Include="Controllers\ListControllers\TestimonyAjaxController.cs" />
     <Compile Include="Controllers\TrendingController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -226,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Common.css" />
+    <Content Include="Content\datapicker\datepicker3.css" />
     <Content Include="Content\kendo\2014.3.1411\Black\editor.png" />
     <Content Include="Content\kendo\2014.3.1411\Black\imagebrowser.png" />
     <Content Include="Content\kendo\2014.3.1411\Black\indeterminate.gif" />
@@ -852,9 +854,19 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Home\Program.cshtml" />
+    <Content Include="Views\Shared\_validationSummary.cshtml" />
+    <Content Include="Views\Shared\ListTemplates\_programListTemplate.cshtml" />
+    <Content Include="Views\Shared\ListTemplates\_reviewListTemplate.cshtml" />
+    <Content Include="Views\Shared\ListTemplates\_testimonyListTemplate.cshtml" />
+    <Content Include="Views\Shared\EditorPartials\_testimonyEditorPartial.cshtml" />
+    <Content Include="Views\Shared\EditorPartials\_reviewEditorPartial.cshtml" />
+    <Content Include="Views\Shared\EditorPartials\_programEditorPartial.cshtml" />
+    <Content Include="Views\Home\Trending.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

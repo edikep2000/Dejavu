@@ -16,5 +16,35 @@ namespace Dejavu.DataAccess.Service
        {
            _programRepository = programRepository;
        }
+
+       public Task Insert(Program m)
+       {
+           _programRepository.Insert(m);
+           return Task.FromResult<Object>(null);
+       }
+
+       public Task Delete(int id)
+       {
+            _programRepository.Delete(id);
+           return Task.FromResult<Object>(null);
+       }
+
+       public Task Delete(Program m)
+       {
+           _programRepository.Delete(m);
+           return Task.FromResult<Object>(null);
+       }
+
+       public Task<Program> GetSingle(int id)
+       {
+           var m = _programRepository.GetSingle(id);
+           return Task.FromResult(m);
+       }
+
+       public Task<IQueryable<Program>> GetAll()
+       {
+           var m = _programRepository.GetAll();
+           return Task.FromResult(m);
+       }
    }
 }
