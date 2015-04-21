@@ -66,26 +66,26 @@ namespace Dejavu.Models
 		public MappingConfiguration<Program> GetProgramClassConfiguration()
 		{
 			MappingConfiguration<Program> configuration = new MappingConfiguration<Program>();
-			configuration.MapType(x => new { });
+			configuration.MapType(x => new { }).ToTable("prgram");
 	
 			return configuration;
 		}
 	
 		public void PrepareProgramPropertyConfigurations(MappingConfiguration<Program> configuration)
 		{
-			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id");
-			configuration.HasProperty(x => x.Name).HasFieldName("_name");
-			configuration.HasProperty(x => x.DateHeld).HasFieldName("_dateHeld");
-			configuration.HasProperty(x => x.BannerUrl).HasFieldName("_bannerUrl");
-			configuration.HasProperty(x => x.VideoUrl).HasFieldName("_videoUrl");
-			configuration.HasProperty(x => x.DateCreated).HasFieldName("_dateCreated");
+			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
+			configuration.HasProperty(x => x.Name).HasFieldName("_name").ToColumn("nme").IsNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
+			configuration.HasProperty(x => x.DateHeld).HasFieldName("_dateHeld").ToColumn("DateHeld").IsNotNullable().HasColumnType("datetime").WithConverter("OpenAccessRuntime.Data.MssqlMinDateConverter");
+			configuration.HasProperty(x => x.BannerUrl).HasFieldName("_bannerUrl").ToColumn("BannerUrl").IsNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
+			configuration.HasProperty(x => x.VideoUrl).HasFieldName("_videoUrl").ToColumn("VideoUrl").IsNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
+			configuration.HasProperty(x => x.DateCreated).HasFieldName("_dateCreated").ToColumn("DateCreated").IsNotNullable().HasColumnType("datetime").WithConverter("OpenAccessRuntime.Data.MssqlMinDateConverter");
 		}
 	
 		public void PrepareProgramAssociationConfigurations(MappingConfiguration<Program> configuration)
 		{
-			configuration.HasAssociation(x => x.ProgramRatings).HasFieldName("_programRatings").WithOpposite(x => x.Program).WithDataAccessKind(DataAccessKind.ReadWrite);
 			configuration.HasAssociation(x => x.ProgramReviews).HasFieldName("_programReviews").WithOpposite(x => x.Program).ToColumn("ProgramId").WithDataAccessKind(DataAccessKind.ReadWrite);
 			configuration.HasAssociation(x => x.ProgramTestimonies).HasFieldName("_programTestimonies").WithOpposite(x => x.Program).ToColumn("ProgramId").WithDataAccessKind(DataAccessKind.ReadWrite);
+			configuration.HasAssociation(x => x.ProgramRatings).HasFieldName("_programRatings").WithOpposite(x => x.Program).ToColumn("ProgramId").WithDataAccessKind(DataAccessKind.ReadWrite);
 		}
 		
 		public MappingConfiguration<ProgramReviews> GetProgramReviewsMappingConfiguration()
@@ -132,21 +132,21 @@ namespace Dejavu.Models
 		public MappingConfiguration<ProgramRatings> GetProgramRatingsClassConfiguration()
 		{
 			MappingConfiguration<ProgramRatings> configuration = new MappingConfiguration<ProgramRatings>();
-			configuration.MapType(x => new { });
+			configuration.MapType(x => new { }).ToTable("ProgramRatings");
 	
 			return configuration;
 		}
 	
 		public void PrepareProgramRatingsPropertyConfigurations(MappingConfiguration<ProgramRatings> configuration)
 		{
-			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id");
-			configuration.HasProperty(x => x.ProgramId).HasFieldName("_programId");
-			configuration.HasProperty(x => x.Rating).HasFieldName("_rating");
+			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
+			configuration.HasProperty(x => x.ProgramId).HasFieldName("_programId").ToColumn("ProgramId").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
+			configuration.HasProperty(x => x.Rating).HasFieldName("_rating").ToColumn("Rating").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
 		}
 	
 		public void PrepareProgramRatingsAssociationConfigurations(MappingConfiguration<ProgramRatings> configuration)
 		{
-			configuration.HasAssociation(x => x.Program).HasFieldName("_program").WithOpposite(x => x.ProgramRatings).WithDataAccessKind(DataAccessKind.ReadWrite);
+			configuration.HasAssociation(x => x.Program).HasFieldName("_program").WithOpposite(x => x.ProgramRatings).ToColumn("ProgramId").IsRequired().WithDataAccessKind(DataAccessKind.ReadWrite);
 		}
 		
 		public MappingConfiguration<ProgramTestimonies> GetProgramTestimoniesMappingConfiguration()

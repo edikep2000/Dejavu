@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Dejavu.Common.Extensions;
 using Dejavu.Common.ViewModels;
 using Dejavu.DataAccess.Service;
-using Kendo.Mvc.Extensions;
 using Omu.AwesomeMvc;
 
 namespace Dejavu.Controllers.ListControllers
@@ -30,7 +31,7 @@ namespace Dejavu.Controllers.ListControllers
                         ReviewCount = i.ProgramReviews.Count(),
                         TestimonyCount = i.ProgramTestimonies.Count(),
                         BannerUrl = i.BannerUrl,
-                        DateHeld = i.DateHeld
+                        DateHeld = i.DateHeld,
                     }).OrderByDescending(i => i.DateHeld)
                     .ThenByDescending(i => i.DateCreated).ThenByDescending(I => I.RatingsCount);
             return Json(new AjaxListResult
@@ -38,6 +39,30 @@ namespace Dejavu.Controllers.ListControllers
                     Content = this.RenderView("ListTemplates/_programListTemplate", list.Page(page, 5)),
                     More = list.Count() > page*5
                 });
+        }
+
+        public  ActionResult GetProgramsForHome(int page)
+        {
+            var list =  _programService.GetAll().Result;
+            var s =
+               list.Select(i => new ProgramListModel
+               {
+                   Id = i.Id,
+                   Name = i.Name,
+                   DateCreated = i.DateCreated,
+                   ReviewCount = i.ProgramReviews.Count(),
+                   TestimonyCount = i.ProgramTestimonies.Count(),
+                   BannerUrl = i.BannerUrl,
+                   DateHeld = i.DateHeld,
+               }).OrderByDescending(i => i.DateHeld)
+                   .ThenByDescending(i => i.DateCreated).ThenByDescending(I => I.RatingsCount).AsEnumerable();
+            var programListModels = s as IList<ProgramListModel> ?? s.ToList();
+            return Json(new AjaxListResult
+            {
+                Content = this.RenderView("ListTemplates/_homeProgramListPartial", programListModels.Page(page, 1)),
+                More = programListModels.Count() > page * 1
+            });
+
         }
     }
 }

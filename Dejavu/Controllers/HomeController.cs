@@ -15,9 +15,12 @@ namespace Dejavu.Controllers
     public class HomeController : BaseController
     {
         private readonly ProgramService _persistenceService;
-        public HomeController(OpenAccessContext context, ProgramService persistenceService) : base(context)
+        private readonly ProgramTestimoniesService _testimoniesService;
+
+        public HomeController(OpenAccessContext context, ProgramService persistenceService, ProgramTestimoniesService testimoniesService) : base(context)
         {
             _persistenceService = persistenceService;
+            _testimoniesService = testimoniesService;
         }
 
         public ActionResult Program()
@@ -45,7 +48,7 @@ namespace Dejavu.Controllers
 
                 }
                 var fileName = model.Name + "." + extension;
-                var bannerUrl = "~/Uploads/" + fileName;
+                var bannerUrl = "/Uploads/" + fileName;
                 files.SaveAs(Path.Combine(imageUploadPath, fileName));
                 //we have saved the image
                 persistentEntity.BannerUrl = bannerUrl;
@@ -60,7 +63,14 @@ namespace Dejavu.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var testimonyTask = _testimoniesService.GetAll();
+            var programTask = _persistenceService.GetAll();
+            var m = new ShareModel
+                {
+                    ProgramCount = programTask.Result.Count(),
+                    TestimonyCount = testimonyTask.Result.Count()
+                };
+            return View(m);
         }
 
         public  ActionResult Trending()

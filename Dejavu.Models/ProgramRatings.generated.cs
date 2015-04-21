@@ -28,6 +28,7 @@ namespace Dejavu.Models
 	{
 		private long _id;
 		[System.ComponentModel.DataAnnotations.Required()]
+		[System.ComponentModel.DataAnnotations.Key()]
 		public virtual long Id
 		{
 			get

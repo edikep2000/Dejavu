@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Dejavu.Common.ViewModels.ProgramListModel>
+
+@foreach (var i in Model)
+{
+    <li data-k="@i.Id" class="col-sm-12 awe-li awe-il">
+        <div class="panel panel-default">
+            <div class="panel-heading"><a href="@Url.Action("Details","Program", new{id = i.Id})" class="pull-right">View Details</a> 
+                <h4>@i.Name <small class="text-muted date-moment">@i.DateHeld.ToString()</small></h4></div>
+            <div class="panel-body">
+                <img src="@i.BannerUrl" class="img-responsive">
+                <div class="clearfix"></div>
+                <hr>						
+                <p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at 
+                    <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.
+                </p>	
+                <small class="text-muted">
+                    @i.TestimonyCount testimonies
+                </small>				
+                <hr>
+                <div class="well">
+                    <h4>Your Testimony</h4>
+                    @using(Html.BeginForm("New","Testimony",FormMethod.Post, new{@class="form-horizontal", role="form", id = "form"+ i.Id}))
+                    {
+                        @Html.Hidden("ProgramId", i.Id)
+                        <div class="form-group" style="padding: 14px;">
+                            @Html.TextBox("PostedBy", null, new{@class="form-control", placeholder = "Full Name"})     
+                        </div>
+                        
+                        <div class="form-group" style="padding: 14px;">
+                            @Html.TextBox("Chapter", null, new{@class="form-control", placeholder = "Your Chapter"})
+                        </div>  
+                        
+                        <div class="form-group" style="padding: 14px;">
+                            @Html.TextArea("Post", null, new{@class="form-control", placeholder = "Your Experience", rows=5})
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="btn btn-primary">
+                                Post Details
+                            </button>
+                        </div>                                               
+                    } 
+                   
+                    
+                </div>						
+            </div>
+        </div>
+
+    </li>
+    <script>
+        $(document).ready(function() {
+            $(".date-moment").each(function() {
+                var date = $(this).text();
+                var formatted = moment(date).calendar();
+                $(this).text(formatted);
+            });
+        });
+
+    </script>
+    
+}
+

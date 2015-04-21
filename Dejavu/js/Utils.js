@@ -22,12 +22,31 @@
     });
 }
 
+//on document ready
+function documentReady(root, popupMod) {
+    consistentSearchTxt();
+    $(document).ajaxComplete(consistentSearchTxt);
+
+    //parsing the unobtrusive attributes when we get content via ajax
+    $(document).ajaxComplete(function () {
+        $.validator.unobtrusive.parse(document);
+    });
+    /*beginpopup*/
+    var jqueryUIpopup = awe.popup;
+
+    awe.popup = function (o) {
+        return bootstrapPopup(o);
+    };
+    /*endpopup*/
+}
+
 function init(dateFormat, isMobileOrTablet) {
     //by default jquery.validate doesn't validate hidden inputs
     if ($.validator) $.validator.setDefaults({
         ignore: []
     });
-
+    
+  
     setjQueryValidateDateFormat(dateFormat);
 
     // don't focus first input on mobile

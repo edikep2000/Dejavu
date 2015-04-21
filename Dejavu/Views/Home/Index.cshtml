@@ -1,4 +1,38 @@
 ﻿@{
     ViewBag.Title = "Welcome to DejaVu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model Dejavu.Common.ViewModels.ShareModel
+<div class="padding">
+    <div class="full col-sm-9">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-thumbnail">
+                        <img src="~/img/bg_5.jpg" class="img-responsive"/>
+                    </div>
+                    <div class="panel-body">
+                        <p class="lead">Dejavu</p>
+                        <p>@Model.ProgramCount Programs, @Model.TestimonyCount Testimonies</p>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>What Is Dejavu?</h4></div>
+                    <div class="panel-body">
+                        Dejavu exists solely for your testimonies.
+                        We believe the programs we have organized over the years have impacted
+                        your life in one way or the other. We also believe that others should know
+                        about this, not just you. That would not be fair you know. So share it all you
+                        want more utilities are on the way to enable you share with a wider audience
+                    
+                    </div>
+                </div>
 
+            </div>
+            <div class="col-md-7">
+                @Html.Awe().AjaxList("getHomePrograms").Url(Url.Action("GetProgramsForHome","ProgramAjaxList")).MoreText("More...").CssClass("col-md-7")               
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,6 +28,7 @@ namespace Dejavu.Models
 	{
 		private int _id;
 		[System.ComponentModel.DataAnnotations.Required()]
+		[System.ComponentModel.DataAnnotations.Key()]
 		public virtual int Id
 		{
 			get
@@ -46,7 +47,7 @@ namespace Dejavu.Models
 		}
 		
 		private string _name;
-		[System.ComponentModel.DataAnnotations.Required()]
+		[System.ComponentModel.DataAnnotations.StringLength(255)]
 		public virtual string Name
 		{
 			get
@@ -65,6 +66,7 @@ namespace Dejavu.Models
 		}
 		
 		private DateTime _dateHeld;
+		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.DateTime)]
 		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual DateTime DateHeld
 		{
@@ -84,7 +86,7 @@ namespace Dejavu.Models
 		}
 		
 		private string _bannerUrl;
-		[System.ComponentModel.DataAnnotations.Required()]
+		[System.ComponentModel.DataAnnotations.StringLength(255)]
 		public virtual string BannerUrl
 		{
 			get
@@ -103,7 +105,7 @@ namespace Dejavu.Models
 		}
 		
 		private string _videoUrl;
-		[System.ComponentModel.DataAnnotations.Required()]
+		[System.ComponentModel.DataAnnotations.StringLength(255)]
 		public virtual string VideoUrl
 		{
 			get
@@ -122,6 +124,7 @@ namespace Dejavu.Models
 		}
 		
 		private DateTime _dateCreated;
+		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.DateTime)]
 		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual DateTime DateCreated
 		{
@@ -140,15 +143,6 @@ namespace Dejavu.Models
 			}
 		}
 		
-		private IList<ProgramRatings> _programRatings = new List<ProgramRatings>();
-		public virtual IList<ProgramRatings> ProgramRatings
-		{
-			get
-			{
-				return this._programRatings;
-			}
-		}
-		
 		private IList<ProgramReviews> _programReviews = new List<ProgramReviews>();
 		public virtual IList<ProgramReviews> ProgramReviews
 		{
@@ -164,6 +158,15 @@ namespace Dejavu.Models
 			get
 			{
 				return this._programTestimonies;
+			}
+		}
+		
+		private IList<ProgramRatings> _programRatings = new List<ProgramRatings>();
+		public virtual IList<ProgramRatings> ProgramRatings
+		{
+			get
+			{
+				return this._programRatings;
 			}
 		}
 		

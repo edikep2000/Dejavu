@@ -1,0 +1,26 @@
+﻿@model Dejavu.Common.ViewModels.ProgramReviewsEditorModel
+
+<div class="well">
+
+    @using (Html.BeginForm("New", "Review", FormMethod.Post, new {@class = "form-horizontal"}))
+    {
+        @Html.HiddenFor(m => m.ProgramId)
+
+        <div class="form-group" style="padding:14px;">
+            @Html.LabelFor(m => m.PostedBy, new{@class="control-label"})
+            @Html.TextBoxFor(m => m.PostedBy, new{@class="form-control"})
+        </div>
+        
+        <div class="form-group" style="padding:14px;">
+            @Html.LabelFor(m => m.Chapter, new{@class="control-label"})
+            @Html.TextBoxFor(m => m.Chapter, new{@class="form-control"})
+        </div>
+        
+        <div class="form-group" style="padding:14px;">
+            @Html.LabelFor(m => m.Review, new{@class="control-label"})
+            @Html.TextAreaFor(m => m.Review, new{@class="form-control"})
+        </div>
+
+    }
+    
+</div>
