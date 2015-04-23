@@ -21,9 +21,14 @@ namespace Dejavu
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/js/modernizr-*"));
+                        "~/js/modernizr-*", "~/Scripts/kendo/2014.3.1411/jszip.min.js",
+                        "~/Scripts/kendo/2014.3.1411/kendo.all.min.js",
+                        "~/Scripts/kendo/2014.3.1411/kendo.aspnetmvc.min.js",
+                        "~/Scripts/kendo.modernizr.custom.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/css/bootstrap.css","~/css/facebook.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/css/bootstrap.css", "~/css/facebook.css", "~/Content/kendo/2014.3.1411/kendo.common-bootstrap.min.css",
+                "~/Content/kendo/2014.3.1411/kendo.mobile.all.min.css",
+                "~/Content/kendo/2014.3.1411/kendo.bootstrap.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

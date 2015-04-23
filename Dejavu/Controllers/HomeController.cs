@@ -23,12 +23,14 @@ namespace Dejavu.Controllers
             _testimoniesService = testimoniesService;
         }
 
+        [Authorize]
         public ActionResult Program()
        {
            return View();
        }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Program(ProgramEditorModel model, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
@@ -71,11 +73,6 @@ namespace Dejavu.Controllers
                     TestimonyCount = testimonyTask.Result.Count()
                 };
             return View(m);
-        }
-
-        public  ActionResult Trending()
-        {
-            return View();
         }
     }
 }

@@ -43,7 +43,8 @@ namespace Dejavu.Controllers.ListControllers
 
         public  ActionResult GetProgramsForHome(string search, int page)
         {
-            var list =  _programService.GetAll().Result;
+            search = (search ?? "").ToLower();
+            var list =  _programService.GetAll().Result.Where(i => i.Name.Contains(search));
             var s =
                list.Select(i => new ProgramListModel
                {

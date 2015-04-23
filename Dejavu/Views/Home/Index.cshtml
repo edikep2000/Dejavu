@@ -31,7 +31,7 @@
 
             </div>
             <div class="col-md-7">
-                @Html.Awe().AjaxList("getHomePrograms").Url(Url.Action("GetProgramsForHome","ProgramAjaxList")).MoreText("More...").CssClass("col-md-7")               
+                @Html.Awe().AjaxList("getHomePrograms").Url(Url.Action("GetProgramsForHome","ProgramAjaxList")).MoreText("More...").CssClass("col-md-7").Parent("txtSearch", "search").LoadOnParentChange(true)               
             </div>
         </div>
     </div>

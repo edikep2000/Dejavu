@@ -1,5 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Dejavu.Common.Extensions
 {
@@ -31,6 +33,24 @@ namespace Dejavu.Common.Extensions
         public static string ChangePasswordFormat(string popupName)
         {
             return "<button type='button' class='awe-btn' onclick=\"awe.open('" + popupName + "', { params:{ id: .Id } })\">change password</button>";
+        }
+    }
+
+    public static class HmtlHelperExtensions
+    {
+        public static bool IsSelected(this HtmlHelper html, string controller = null, string action = null)
+        {
+            string cssClass = "active";
+            string currentAction = (string)html.ViewContext.RouteData.Values["action"];
+            string currentController = (string)html.ViewContext.RouteData.Values["controller"];
+
+            if (String.IsNullOrEmpty(controller))
+                controller = currentController;
+
+            if (String.IsNullOrEmpty(action))
+                action = currentAction;
+
+            return controller == currentController && action == currentAction;
         }
     }
 }
