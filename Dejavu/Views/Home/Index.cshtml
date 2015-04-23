@@ -36,3 +36,26 @@
         </div>
     </div>
 </div>
+
+@section scripts
+{
+       <script type="text/javascript">
+        
+        //$('body').on('click', ' input[type=button]', function () {
+        //    console.log("yeahhhh!!! but this doesn't work for me :(");
+        //});
+        
+      @*  $('#@i.Id input[type=button]').click(function () {
+            console.log("yeahhhh!!! but this doesn't work for me :(");
+            var form = $('form[id="@i.Id"]');
+            $.ajax({
+                url: form.attr('action'),
+                type: 'post',
+                data: form.serialize(),
+                success: function (data) {
+                    $("#@i.Id")[0].reset();
+                }
+            });
+        });*@
+    </script>
+}

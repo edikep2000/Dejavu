@@ -1,0 +1,93 @@
+﻿@model Dejavu.Common.ViewModels.ProgramListModel
+
+@{
+    ViewBag.Title = Model == null ? "Program Details" : Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="padding">
+    <div class="full col-sm-9">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-thumbnail">
+                        <img src="@Model.BannerUrl" class="img-responsive"/>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <p class="lead">
+                            @Model.Name
+                        </p>
+                        
+                        <p>@Model.TestimonyCount testimonies</p>
+                    </div>
+
+                </div>
+                
+                <div class="panel panle-default">
+                    <div class="panel-heading">
+                        <h4>
+                            @Model.Name
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        @Model.Description
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="well">
+                    <h4>Your Testimony</h4>
+                    @using(Html.BeginForm("New","Testimony",FormMethod.Post, new{@class="form-horizontal", role="form", id = Model.Id}))
+                    {
+                        @Html.Hidden("ProgramId", Model.Id)
+                        <div class="form-group" style="padding: 14px;">
+                            @Html.TextBox("PostedBy", null, new{@class="form-control", placeholder = "Full Name"})     
+                        </div>
+                        
+                        <div class="form-group" style="padding: 14px;">
+                            @Html.TextBox("Chapter", null, new{@class="form-control", placeholder = "Your Chapter"})
+                        </div>  
+                        
+                        <div class="form-group" style="padding: 14px;">
+                            @Html.TextArea("Post", null, new{@class="form-control", placeholder = "Your Experience", rows=5})
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" id="@Model.Id">
+                                Share <i class="glyphicon glyphicon-share-alt"></i>
+                            </button>
+                        </div>                                               
+                    } 
+                </div>
+                
+                <br/>
+                @Html.Awe().AjaxList("getTestimonyForProgram").Url(Url.Action("GetForProgram","TestimonyAjax", new {id = Model.Id})).MoreText("More").CssClass("col-md-7")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+      
+    <script type="text/javascript">
+        $('body').on('click', '#@Model.Id button[type=button]', function() {
+            console.log("Form Submitted:");
+            console.log("yeahhhh!!! but this doesn't work for me :(");
+            var form = $('form[id="@Model.Id"]');
+            $.ajax({
+                url: form.attr('action'),
+                type: 'post',
+                data: form.serialize(),
+                success: function(data) {
+                    form[0].reset();
+                    $(form).fadeOut(800, function() {
+                        form.fadeIn().delay(2000);
+                        console.log("Form Submitted:");
+                        $('#getTestimonyForProgram').data('api').load();
+                    });
+                }
+            });
+        });
+    </script>
+    }

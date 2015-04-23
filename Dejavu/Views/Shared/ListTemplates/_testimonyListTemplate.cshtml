@@ -1,38 +1,30 @@
-﻿@model IEnumerable<Dejavu.Common.ViewModels.TestimonyViewModel>
+﻿@using Humanizer
+@model IEnumerable<Dejavu.Common.ViewModels.TestimonyViewModel>
 @Layout = null;
 @foreach (var i in Model)
 {
-    <li data-k="@i.Id" class="awe-li awe-il">
+    <li data-k="@i.Id" class="awe-li awe-il col-sm-12">
         <div class="panel panel-default">
-            
             <div class="panel-body">
-                <p class="text-muted pull-right">
-                    <small>@i.PostedBy @i.Chapter <span class="moment-date">@i.DatePosted</span></small>
-                </p>
-                <p>
+              <p>
                     @i.Post
                 </p>
             </div>
             <div class="panel-footer">
                 <ul class="list-inline">
                     <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-thumbs-up">@i.Likes</i>
-                        </a>
+                        <p class="text-muted">
+                            <small>@i.PostedBy  from @i.Chapter</small>
+                        </p>
+
+                    </li>
+                    <li>
+                        <p class="text-muted">
+                            <small>@i.DatePosted.Humanize()</small>
+                        </p>
                     </li>
                 </ul>
             </div>
         </div>
     </li>
 }
-
-   <script>
-    $(document).ready(function() {
-        $(".date-moment").each(function() {
-            var date = $(this).text();
-            var formatted = moment(date).calendar();
-            $(this).text(formatted);
-        });
-    });
-
-    </script>

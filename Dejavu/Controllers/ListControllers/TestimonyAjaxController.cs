@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Dejavu.Common.Extensions;
 using Dejavu.Common.ViewModels;
 using Dejavu.DataAccess.Service;
-using Kendo.Mvc.Extensions;
 using Omu.AwesomeMvc;
 
 namespace Dejavu.Controllers.ListControllers
@@ -36,13 +36,14 @@ namespace Dejavu.Controllers.ListControllers
                 });
         }
 
-        public async Task<JsonResult> GetForProgram(int id, int page)
+        public async Task<ActionResult> GetForProgram(int id, int page)
         {
             var model = await _testimoniesService.GetAll(id);
             var l = model.Select(i => new TestimonyViewModel
             {
                 Id = i.Id,
                 Post = i.Post,
+                Chapter = i.Chapter,
                 PostedBy = i.PostedBy,
                 DatePosted = i.DatePosted,
                 Likes = i.Likes,

@@ -41,7 +41,7 @@ namespace Dejavu.Controllers.ListControllers
                 });
         }
 
-        public  ActionResult GetProgramsForHome(int page)
+        public  ActionResult GetProgramsForHome(string search, int page)
         {
             var list =  _programService.GetAll().Result;
             var s =
@@ -54,8 +54,9 @@ namespace Dejavu.Controllers.ListControllers
                    TestimonyCount = i.ProgramTestimonies.Count(),
                    BannerUrl = i.BannerUrl,
                    DateHeld = i.DateHeld,
+                   Description = i.Description
                }).OrderByDescending(i => i.DateHeld)
-                   .ThenByDescending(i => i.DateCreated).ThenByDescending(I => I.RatingsCount).AsEnumerable();
+                   .ThenByDescending(i => i.DateCreated).ThenByDescending(I => I.TestimonyCount).AsEnumerable();
             var programListModels = s as IList<ProgramListModel> ?? s.ToList();
             return Json(new AjaxListResult
             {
