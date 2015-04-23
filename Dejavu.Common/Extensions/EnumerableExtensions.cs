@@ -12,5 +12,10 @@ namespace Dejavu.Common.Extensions
         {
             return list.Skip((page - 1) * pageSize).Take(pageSize);
         }
+
+        public static IQueryable<T> Page<T>(this IQueryable<T> list, int page, int pageSize)
+        {
+            return list.Skip((page - 1) * pageSize).Take(pageSize);
+        }
     }
 }

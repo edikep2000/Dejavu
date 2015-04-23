@@ -9,7 +9,6 @@ namespace Dejavu.Common.ViewModels
 {
   public  class ProgramEditorModel
     {
-
       [Key]
       public int Id { get; set; }
 
@@ -19,6 +18,10 @@ namespace Dejavu.Common.ViewModels
       [Display(Name = "Date Held")]
       [Required]
       public DateTime DateHeld { get; set; }
+
+      [Display(Name = "About the Program")]
+      [Required]
+      public String Description { get; set; }
 
       [Display(Name = "Banner Url")]
       public String BannerUrl { get; set; }

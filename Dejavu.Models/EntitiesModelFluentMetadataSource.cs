@@ -66,19 +66,20 @@ namespace Dejavu.Models
 		public MappingConfiguration<Program> GetProgramClassConfiguration()
 		{
 			MappingConfiguration<Program> configuration = new MappingConfiguration<Program>();
-			configuration.MapType(x => new { }).ToTable("prgram");
+			configuration.MapType(x => new { }).WithCascadeDelete(CascadeDeleteOption.Yes);
 	
 			return configuration;
 		}
 	
 		public void PrepareProgramPropertyConfigurations(MappingConfiguration<Program> configuration)
 		{
-			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
-			configuration.HasProperty(x => x.Name).HasFieldName("_name").ToColumn("nme").IsNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
-			configuration.HasProperty(x => x.DateHeld).HasFieldName("_dateHeld").ToColumn("DateHeld").IsNotNullable().HasColumnType("datetime").WithConverter("OpenAccessRuntime.Data.MssqlMinDateConverter");
-			configuration.HasProperty(x => x.BannerUrl).HasFieldName("_bannerUrl").ToColumn("BannerUrl").IsNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
-			configuration.HasProperty(x => x.VideoUrl).HasFieldName("_videoUrl").ToColumn("VideoUrl").IsNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
-			configuration.HasProperty(x => x.DateCreated).HasFieldName("_dateCreated").ToColumn("DateCreated").IsNotNullable().HasColumnType("datetime").WithConverter("OpenAccessRuntime.Data.MssqlMinDateConverter");
+			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id");
+			configuration.HasProperty(x => x.Name).HasFieldName("_name");
+			configuration.HasProperty(x => x.DateHeld).HasFieldName("_dateHeld");
+			configuration.HasProperty(x => x.BannerUrl).HasFieldName("_bannerUrl");
+			configuration.HasProperty(x => x.VideoUrl).HasFieldName("_videoUrl");
+			configuration.HasProperty(x => x.DateCreated).HasFieldName("_dateCreated");
+			configuration.HasProperty(x => x.Description).HasFieldName("_description");
 		}
 	
 		public void PrepareProgramAssociationConfigurations(MappingConfiguration<Program> configuration)
@@ -100,14 +101,14 @@ namespace Dejavu.Models
 		public MappingConfiguration<ProgramReviews> GetProgramReviewsClassConfiguration()
 		{
 			MappingConfiguration<ProgramReviews> configuration = new MappingConfiguration<ProgramReviews>();
-			configuration.MapType(x => new { }).ToTable("ProgramReviews");
+			configuration.MapType(x => new { }).WithCascadeDelete(CascadeDeleteOption.Yes).ToTable("ProgramReviews");
 	
 			return configuration;
 		}
 	
 		public void PrepareProgramReviewsPropertyConfigurations(MappingConfiguration<ProgramReviews> configuration)
 		{
-			configuration.HasProperty(x => x.Id).IsIdentity().HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
+			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
 			configuration.HasProperty(x => x.PostedBy).HasFieldName("_postedBy").ToColumn("PostedBy").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.Chapter).HasFieldName("_chapter").ToColumn("Chapter").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.Review).HasFieldName("_review").ToColumn("Review").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
@@ -132,7 +133,7 @@ namespace Dejavu.Models
 		public MappingConfiguration<ProgramRatings> GetProgramRatingsClassConfiguration()
 		{
 			MappingConfiguration<ProgramRatings> configuration = new MappingConfiguration<ProgramRatings>();
-			configuration.MapType(x => new { }).ToTable("ProgramRatings");
+			configuration.MapType(x => new { }).WithCascadeDelete(CascadeDeleteOption.Yes).ToTable("ProgramRatings");
 	
 			return configuration;
 		}
@@ -161,17 +162,17 @@ namespace Dejavu.Models
 		public MappingConfiguration<ProgramTestimonies> GetProgramTestimoniesClassConfiguration()
 		{
 			MappingConfiguration<ProgramTestimonies> configuration = new MappingConfiguration<ProgramTestimonies>();
-			configuration.MapType(x => new { }).ToTable("ProgramTestimonies");
+			configuration.MapType(x => new { }).WithCascadeDelete(CascadeDeleteOption.Yes).ToTable("ProgramTestimonies");
 	
 			return configuration;
 		}
 	
 		public void PrepareProgramTestimoniesPropertyConfigurations(MappingConfiguration<ProgramTestimonies> configuration)
 		{
-			configuration.HasProperty(x => x.Id).IsIdentity().HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
+			configuration.HasProperty(x => x.Id).IsIdentity(KeyGenerator.Autoinc).HasFieldName("_id").ToColumn("Id").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
 			configuration.HasProperty(x => x.PostedBy).HasFieldName("_postedBy").ToColumn("PostedBy").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.DatePosted).HasFieldName("_datePosted").ToColumn("DatePosted").IsNotNullable().HasColumnType("datetime").WithConverter("OpenAccessRuntime.Data.MssqlMinDateConverter");
-			configuration.HasProperty(x => x.Post).HasFieldName("_post").ToColumn("Post").IsNotNullable().HasColumnType("varchar").HasLength(255).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
+			configuration.HasProperty(x => x.Post).HasFieldName("_post").ToColumn("Post").IsNotNullable().HasColumnType("varchar").HasLength(500).WithConverter("OpenAccessRuntime.Data.VariableLengthAnsiStringConverter");
 			configuration.HasProperty(x => x.Likes).HasFieldName("_likes").ToColumn("Likes").IsNotNullable().HasColumnType("bigint").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.BigIntConverter");
 			configuration.HasProperty(x => x.ProgramId).HasFieldName("_programId").ToColumn("ProgramId").IsNotNullable().HasColumnType("int").HasPrecision(0).HasScale(0).WithConverter("OpenAccessRuntime.Data.IntConverter");
 			configuration.HasProperty(x => x.Chapter).HasFieldName("_chapter");

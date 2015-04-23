@@ -28,7 +28,6 @@ namespace Dejavu.Models
 	{
 		private int _id;
 		[System.ComponentModel.DataAnnotations.Required()]
-		[System.ComponentModel.DataAnnotations.Key()]
 		public virtual int Id
 		{
 			get
@@ -47,7 +46,7 @@ namespace Dejavu.Models
 		}
 		
 		private string _name;
-		[System.ComponentModel.DataAnnotations.StringLength(255)]
+		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual string Name
 		{
 			get
@@ -66,7 +65,6 @@ namespace Dejavu.Models
 		}
 		
 		private DateTime _dateHeld;
-		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.DateTime)]
 		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual DateTime DateHeld
 		{
@@ -86,7 +84,7 @@ namespace Dejavu.Models
 		}
 		
 		private string _bannerUrl;
-		[System.ComponentModel.DataAnnotations.StringLength(255)]
+		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual string BannerUrl
 		{
 			get
@@ -105,7 +103,7 @@ namespace Dejavu.Models
 		}
 		
 		private string _videoUrl;
-		[System.ComponentModel.DataAnnotations.StringLength(255)]
+		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual string VideoUrl
 		{
 			get
@@ -124,7 +122,6 @@ namespace Dejavu.Models
 		}
 		
 		private DateTime _dateCreated;
-		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.DateTime)]
 		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual DateTime DateCreated
 		{
@@ -139,6 +136,25 @@ namespace Dejavu.Models
 					this.OnPropertyChanging("DateCreated");
 					this._dateCreated = value;
 					this.OnPropertyChanged("DateCreated");
+				}
+			}
+		}
+		
+		private string _description;
+		[System.ComponentModel.DataAnnotations.Required()]
+		public virtual string Description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if(this._description != value)
+				{
+					this.OnPropertyChanging("Description");
+					this._description = value;
+					this.OnPropertyChanged("Description");
 				}
 			}
 		}
@@ -243,6 +259,7 @@ namespace Dejavu.Models
 			this.BannerUrl = info.GetString("BannerUrl");
 			this.VideoUrl = info.GetString("VideoUrl");
 			this.DateCreated = (DateTime)info.GetValue("DateCreated", typeof(DateTime));
+			this.Description = info.GetString("Description");
 			CustomizeDeserializationProcess(info, context);
 		}
 		
@@ -254,6 +271,7 @@ namespace Dejavu.Models
 			info.AddValue("BannerUrl", this.BannerUrl, typeof(string));
 			info.AddValue("VideoUrl", this.VideoUrl, typeof(string));
 			info.AddValue("DateCreated", this.DateCreated, typeof(DateTime));
+			info.AddValue("Description", this.Description, typeof(string));
 			CustomizeSerializationProcess(info, context);
 		}
 		

@@ -2,8 +2,7 @@
 <DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="EntitiesModel" namespace="Dejavu.Models" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
   <orm:orm name="EntitiesModel" backend="mssql" xmlns:orm="http://tempuri.org/ORM">
     <orm:namespace name="Dejavu.Models" default="true">
-      <orm:class name="Program" uniqueId="ba3b84bb-ac15-458b-89de-4c3f1748aeb7">
-        <orm:table name="prgram" />
+      <orm:class name="Program" use-default-mapping="true" use-cascade-delete="yes" uniqueId="ba3b84bb-ac15-458b-89de-4c3f1748aeb7">
         <orm:identity>
           <orm:key-generator name="autoinc">
             <orm:key-generator-member property-name="Id" />
@@ -28,6 +27,9 @@
         <orm:field name="_dateCreated" property="DateCreated" uniqueId="54590a38-9365-4b06-8358-859e62e2715a" type="System.DateTime">
           <orm:column name="DateCreated" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
+        <orm:field name="_description" property="Description" uniqueId="3960f35a-69a6-4ab5-a87a-07aaffd9274c" type="System.String">
+          <orm:column name="Description" sql-type="varchar" nullable="true" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        </orm:field>
         <orm:field name="_programReviews" property="ProgramReviews" behavior="readwrite" uniqueId="fc20e2b5-148a-46ee-a97d-f2d7e8d01b38" type="Dejavu.Models.ProgramReviews">
           <orm:collection element-class="Dejavu.Models.ProgramReviews" inverse-field="_program" order-by="" uniqueId="c56511cf-1fa2-44b4-9ebb-03c5b1c264ef" />
         </orm:field>
@@ -38,13 +40,16 @@
           <orm:collection element-class="Dejavu.Models.ProgramRatings" inverse-field="_program" order-by="" uniqueId="46642755-7f67-4a49-b5f9-f5f2c794aed5" />
         </orm:field>
       </orm:class>
-      <orm:class name="ProgramReviews" uniqueId="1a3b9b76-e59f-4c0f-a279-8e1a036f65d7">
+      <orm:class name="ProgramReviews" use-cascade-delete="yes" uniqueId="1a3b9b76-e59f-4c0f-a279-8e1a036f65d7">
         <orm:table name="ProgramReviews" />
         <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:field name="_id" property="Id" uniqueId="3e2db61c-05ec-4861-af30-aaecda4506f4" type="System.Int64">
-          <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" ado-type="Int64" />
+          <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" backend-calculated="true" ado-type="Int64" />
         </orm:field>
         <orm:field name="_postedBy" property="PostedBy" uniqueId="055fb8a1-f563-4e2e-8035-c7e5ace4bb22" type="System.String">
           <orm:column name="PostedBy" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -70,7 +75,7 @@
           </orm:columnMapping>
         </orm:index>
       </orm:class>
-      <orm:class name="ProgramRatings" uniqueId="46ed07a8-b9d2-433a-a2ba-410abd7a5c51">
+      <orm:class name="ProgramRatings" use-cascade-delete="yes" uniqueId="46ed07a8-b9d2-433a-a2ba-410abd7a5c51">
         <orm:table name="ProgramRatings" />
         <orm:identity>
           <orm:key-generator name="autoinc">
@@ -98,13 +103,16 @@
           </orm:columnMapping>
         </orm:index>
       </orm:class>
-      <orm:class name="ProgramTestimonies" uniqueId="39c0eb02-9160-4c9a-b647-0d81f5cc1c22">
+      <orm:class name="ProgramTestimonies" use-cascade-delete="yes" uniqueId="39c0eb02-9160-4c9a-b647-0d81f5cc1c22">
         <orm:table name="ProgramTestimonies" />
         <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:field name="_id" property="Id" uniqueId="624ad34c-70a3-4b2d-a3c1-618837e38f04" type="System.Int64">
-          <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" ado-type="Int64" />
+          <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" backend-calculated="true" ado-type="Int64" />
         </orm:field>
         <orm:field name="_postedBy" property="PostedBy" uniqueId="9992a7b5-f349-4f8d-952c-16fca951095a" type="System.String">
           <orm:column name="PostedBy" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -113,7 +121,7 @@
           <orm:column name="DatePosted" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_post" property="Post" uniqueId="d2826121-da80-4267-8472-a2e81755a89f" type="System.String">
-          <orm:column name="Post" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+          <orm:column name="Post" sql-type="varchar" nullable="false" length="500" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         </orm:field>
         <orm:field name="_likes" property="Likes" uniqueId="d165d687-e901-4256-b522-4fac15582583" type="System.Int64">
           <orm:column name="Likes" sql-type="bigint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.BigIntConverter" ado-type="Int64" />
@@ -131,15 +139,15 @@
     </orm:namespace>
     <orm:schema schema="">
       <orm:table name="ProgramTestimonies">
-        <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" ado-type="Int64" />
+        <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" backend-calculated="true" ado-type="Int64" />
         <orm:column name="PostedBy" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="DatePosted" sql-type="datetime" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.MssqlMinDateConverter" ado-type="DateTime" />
-        <orm:column name="Post" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
+        <orm:column name="Post" sql-type="varchar" nullable="false" length="500" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Likes" sql-type="bigint" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.BigIntConverter" ado-type="Int64" />
         <orm:column name="ProgramId" sql-type="int" nullable="false" length="0" scale="0" converter="OpenAccessRuntime.Data.IntConverter" ado-type="Int32" />
       </orm:table>
       <orm:table name="ProgramReviews">
-        <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" ado-type="Int64" />
+        <orm:column name="Id" sql-type="bigint" nullable="false" length="0" scale="0" primary-key="true" converter="OpenAccessRuntime.Data.BigIntConverter" backend-calculated="true" ado-type="Int64" />
         <orm:column name="PostedBy" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Chapter" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
         <orm:column name="Review" sql-type="varchar" nullable="false" length="255" scale="0" converter="OpenAccessRuntime.Data.VariableLengthAnsiStringConverter" ado-type="StringVariableLength" />
@@ -177,7 +185,7 @@
   </orm:orm>
   <ModelSettings xmlns="">
     <AppConfigConnectionPropertyName>DejavuConnection</AppConfigConnectionPropertyName>
-    <AppConfigConnectionString>Data Source=PETER;Initial Catalog=dejavu;Persist Security Info=True;User ID=sa;Password=edikep2000</AppConfigConnectionString>
+    <AppConfigConnectionString>data source=PETER;initial catalog=dejavu;persist security info=True;user id=sa;password=edikep2000</AppConfigConnectionString>
     <NamingSettings>
       <ClassRules>
         <CaseMode>PascalCase</CaseMode>
@@ -205,6 +213,7 @@
     <SchemaUpdateSettings>
       <ExecuteScript>true</ExecuteScript>
       <DeploymentProject>Dejavu.Models</DeploymentProject>
+      <UpdateDatabaseOperation>Migrate</UpdateDatabaseOperation>
     </SchemaUpdateSettings>
     <BackendConfigurationSettings>
       <BackendConfiguration>
@@ -217,13 +226,14 @@
     </BackendConfigurationSettings>
   </ModelSettings>
   <Types>
-    <DomainClass Id="ba3b84bb-ac15-458b-89de-4c3f1748aeb7" name="Program" namespace="Dejavu.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+    <DomainClass Id="ba3b84bb-ac15-458b-89de-4c3f1748aeb7" name="Program" namespace="Dejavu.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" useCascadeDelete="Yes" identityMechanismMember="Id">
       <Property Id="8f26256a-fbe8-4a1d-96e5-15b3d8e1a0b3" name="Id" type="System.Int32" label="Id : System.Int32" identity="true" fieldName="_id" />
       <Property Id="202a9b4f-2037-47b3-ba24-e0379b429898" name="Name" label="Name : String" fieldName="_name" />
       <Property Id="7c951b3b-39bf-4b52-8197-49139c755629" name="DateHeld" type="DateTime" label="DateHeld : DateTime" fieldName="_dateHeld" />
       <Property Id="cd494334-c125-4a21-a2f0-4968f4089293" name="BannerUrl" label="BannerUrl : String" fieldName="_bannerUrl" />
       <Property Id="f1d73ea4-329a-4b96-b994-b276227304a4" name="VideoUrl" label="VideoUrl : String" fieldName="_videoUrl" />
       <Property Id="54590a38-9365-4b06-8358-859e62e2715a" name="DateCreated" type="DateTime" label="DateCreated : DateTime" fieldName="_dateCreated" />
+      <Property Id="3960f35a-69a6-4ab5-a87a-07aaffd9274c" name="Description" label="Description : String" fieldName="_description" />
       <navigationalProperties>
         <classHasNavigationalProperties Id="bdececd4-fba3-45b4-8161-913e877f1ff8">
           <NavigationalProperty Id="d9e7b0b6-7186-4c2b-86ff-c23c74f58852" name="ProgramRatings" type="IList&lt;ProgramRatings&gt;" label="ProgramRatings : IList&lt;ProgramRatings&gt;" nullable="true" kind="Persistent" fieldName="_programRatings" isDependent="false" isManaged="false" />
@@ -236,7 +246,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="1a3b9b76-e59f-4c0f-a279-8e1a036f65d7" name="ProgramReviews" namespace="Dejavu.Models" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="1a3b9b76-e59f-4c0f-a279-8e1a036f65d7" name="ProgramReviews" namespace="Dejavu.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" useCascadeDelete="Yes" identityMechanismMember="Id">
       <Property Id="3e2db61c-05ec-4861-af30-aaecda4506f4" name="Id" type="Int64" label="Id : Int64" identity="true" fieldName="_id" />
       <Property Id="055fb8a1-f563-4e2e-8035-c7e5ace4bb22" name="PostedBy" label="PostedBy : String" fieldName="_postedBy" />
       <Property Id="1023a9a2-f8df-4292-bac7-c5580c756c33" name="Chapter" label="Chapter : String" fieldName="_chapter" />
@@ -264,7 +274,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="46ed07a8-b9d2-433a-a2ba-410abd7a5c51" name="ProgramRatings" namespace="Dejavu.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+    <DomainClass Id="46ed07a8-b9d2-433a-a2ba-410abd7a5c51" name="ProgramRatings" namespace="Dejavu.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" useCascadeDelete="Yes" identityMechanismMember="Id">
       <Property Id="602127a6-46a5-43bc-a790-bb81c7daf589" name="Id" type="Int64" label="Id : Int64" identity="true" fieldName="_id" />
       <Property Id="813fe19f-ddbf-4e73-b50f-86f4c87e1438" name="ProgramId" type="Int32" label="ProgramId : Int32" fieldName="_programId" />
       <Property Id="424fdcbd-3ab8-48fd-b75a-dd12855dcfbf" name="Rating" type="Int32" label="Rating : Int32" fieldName="_rating" />
@@ -289,7 +299,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="39c0eb02-9160-4c9a-b647-0d81f5cc1c22" name="ProgramTestimonies" namespace="Dejavu.Models" showPropertiesCompartment="true" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="39c0eb02-9160-4c9a-b647-0d81f5cc1c22" name="ProgramTestimonies" namespace="Dejavu.Models" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" showNavigationCompartment="true" showImplementationCompartment="true" useCascadeDelete="Yes" identityMechanismMember="Id">
       <Property Id="624ad34c-70a3-4b2d-a3c1-618837e38f04" name="Id" type="Int64" label="Id : Int64" identity="true" fieldName="_id" />
       <Property Id="9992a7b5-f349-4f8d-952c-16fca951095a" name="PostedBy" label="PostedBy : String" fieldName="_postedBy" />
       <Property Id="fe791f1c-d7f6-4f13-832c-13ee08b93459" name="DatePosted" type="DateTime" label="DatePosted : DateTime" fieldName="_datePosted" />
