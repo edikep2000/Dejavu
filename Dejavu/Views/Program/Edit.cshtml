@@ -1,7 +1,7 @@
 ﻿@model Dejavu.Common.ViewModels.ProgramEditorModel
 
 @{
-    ViewBag.Title = "New Program";
+    ViewBag.Title = "Edit Program";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,20 +10,19 @@
         <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            New Program
+            Edit Program
         </h4>
     </div>
     
             <div class="panel-body">
                 @Html.Partial("_validationSummary")
-                @using (Html.BeginForm("Program", "Home", FormMethod.Post, new{}))
+                @using (Html.BeginForm("Edit", "Program", FormMethod.Post, new{}))
                 {
                    
                     @Html.Partial("_programEditorPartial")
-            
-            
+           
                     <button type="submit" class="btn btn-primary">
-                        Save <i class="glyphicon glyphicon-save"></i>
+                        Save Changes <i class="glyphicon glyphicon-save"></i>
                     </button>
             
                 }
@@ -31,6 +30,9 @@
 </div>
     </div>
 </div>
+
+
+
 
 @section scripts
 {

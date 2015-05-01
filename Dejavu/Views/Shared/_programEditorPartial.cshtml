@@ -1,0 +1,49 @@
+﻿@model Dejavu.Common.ViewModels.ProgramEditorModel
+
+<div class="form-group">
+    @Html.TextBoxFor(m => m.Name, new{@class="form-control", placeholder = "Program or Event Tag"})
+    <br/>
+    <small class="text-danger">
+        @Html.ValidationMessageFor(m => m.Name)
+    </small>
+</div>
+                 
+<div class="form-group">
+    @Html.TextAreaFor(m => m.Description, new{@class="form-control", placeholder = "Brief Description of Program and its Purpose", rows="8" })
+    <br/>
+    <small class="text-danger">
+        @Html.ValidationMessageFor(m => m.Description)
+    </small>
+</div>
+
+            
+            
+            
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default"><i class="glyphicon glyphicon-hd-video"></i></button>
+                        </div>
+                        @Html.TextBoxFor(m => m.VideoUrl, new{@class="form-control", placeholder = "Youtube Video Url"})
+                        <br/>
+                        <small class="text-danger">
+                            @Html.ValidationMessageFor(m => m.VideoUrl)
+                        </small>
+                    </div>
+            
+                    <br/>
+
+                    <div class="form-group">
+                        @Html.Kendo().DatePickerFor(m => m.DateHeld).HtmlAttributes(new{@class="form-control", placeholder = "Date of Event"})
+                        <br/>
+                        <small class="text-danger">
+                            @Html.ValidationMessageFor(m => m.DateHeld)
+                        </small>
+                    </div>
+          
+                    <div class="form-group">
+                        @Html.Label("files", "JPG, PNG Image with Dimensions 720 x 720 pixels")
+                        @Html.Kendo().Upload().Name("Files").HtmlAttributes(new{required="true", @class="form-control"}).Multiple(false).Events(e => e.Upload("onUpload"))
+                        <br/>
+                        <small>
+                            @Html.ValidationMessage("files")</small>
+                    </div>

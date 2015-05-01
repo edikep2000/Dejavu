@@ -893,6 +893,8 @@
     <Content Include="Views\Shared\ListTemplates\_homeProgramListPartial.cshtml" />
     <Content Include="Views\Review\New.cshtml" />
     <Content Include="Views\Program\Details.cshtml" />
+    <Content Include="Views\Program\Edit.cshtml" />
+    <Content Include="Views\Shared\_programEditorPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

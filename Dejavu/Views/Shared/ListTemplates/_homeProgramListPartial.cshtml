@@ -5,8 +5,17 @@
 {
     <li data-k="@i.Id" class="col-sm-12 awe-li awe-il">
         <div class="panel panel-default">
-            <div class="panel-heading"><a href="@Url.Action("Details","Program", new{id = i.Id})" class="pull-right">View Details</a> 
-                <h4>@i.Name <small class="text-muted">@(i.DateHeld.Humanize())</small></h4></div>
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <a href="@Url.Action("Details","Program", new{id = i.Id})">View Details</a> 
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-primary" href="@Url.Action("Edit","Program", new{id = i.Id})">Edit</a>
+                    }
+                </div>
+             
+                <h4>@i.Name <small class="text-muted">@(i.DateHeld.Humanize())</small></h4>
+            </div>
             <div class="panel-body">
                 <img src="@i.BannerUrl" class="img-responsive">
                 <div class="clearfix"></div>

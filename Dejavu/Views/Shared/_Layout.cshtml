@@ -21,15 +21,18 @@
                 <div class="navbar navbar-blue navbar-static-top">
                     <div class="navbar-header">
                         <a href="@Url.Action("Index", "Home")" class="navbar-brand logo">dejavu</a>
-                     @*   @if (Html.IsSelected("Home", "Index"))
-                        {
-                              <form class="navbar-form navbar-left hidden-xs hidden-sm hidden-print">
-                            <div class="input-group input-group-sm" style="max-width: 360px;">
-                                <input class="form-control" placeholder="Find Event" name="txtSearch" id="srch-term" type="text">
-                               
-                            </div>
-                        </form>
-                        }*@
+                          @if (User.Identity.IsAuthenticated)
+                    {
+                       
+                        
+                        <ul class="nav navbar-nav pull-right">
+                            <li>
+                                <a href="@Url.Action("Program", "Home")"><i class="glyphicon glyphicon-plus"></i> New Event</a>
+                            </li>
+                        </ul>
+                       
+                        
+                    }
                     </div>
                 </div>
                 @RenderBody()
