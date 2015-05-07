@@ -1,8 +1,9 @@
 /* custom template */
 html, body {
-   height: 100%;
-   font-family:verdana,arial,sans-serif;
-   color:#555555;
+    height: 100%;
+    font-family: verdana,arial,sans-serif;
+    color: #555555;
+
 }
 
 .nav {
@@ -23,9 +24,13 @@ hr {
 }
 
 .wrapper, .row {
-   height: 100%;
-   margin-left:0;
-   margin-right:0;
+    background-position: center bottom;
+    height: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    background-image: url('../img/bg_trans.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .wrapper:before, .wrapper:after,

@@ -532,6 +532,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="img\bg_trans.png" />
     <Content Include="img\Thumbs.db" />
     <Content Include="Content\kendo\2014.3.1411\fonts\DejaVu\DejaVuSans-Bold.ttf" />
     <Content Include="Content\kendo\2014.3.1411\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
